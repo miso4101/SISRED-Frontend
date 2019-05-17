@@ -143,7 +143,7 @@
               <table class="table table-hover table-bordered table-margin">
                 <thead>
                 <tr>
-                  <td colspan="5">
+                  <td colspan="6">
                     <h3 class="text-center">Versiones</h3>
                   </td>
                 </tr>
@@ -153,6 +153,7 @@
                   <th scope="col">Creado por</th>
                   <th scope="col">Imagen miniatura</th>
                   <th scope="col">Definitiva</th>
+                  <th scope="col">Marcar como lista</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -167,6 +168,14 @@
                     </div>
                     <ng-template #marcarComoDef>
                       <button type="button" (click)="markAsFinal(version)" class="btn btn-primary">Marcar como definitivo</button>
+                    </ng-template>
+                  </td>
+                  <td>
+                    <div *ngIf="version.esLista; else marcarComoDef">
+                      Listo para Revision Usuario Final
+                    </div>
+                    <ng-template #marcarComoDef>
+                      <button type="button" (click)="markAsListo(version)" class="btn btn-primary">Marcar como definitivo</button>
                     </ng-template>
                   </td>
                 </tr>

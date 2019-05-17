@@ -137,6 +137,11 @@ export class DetalleREDComponent implements OnInit {
     this.versionesService.markAsFinal(version.id).subscribe(()=>this.getVersiones())
   }
 
+    // Marcar versión para listp
+  markAsListo(version:Version): void {
+    this.versionesService.markAsListo(version.id).subscribe(()=>this.getVersiones())
+  }
+
   // Metodo que obtiene las fases
   getFases(): void {
     this.faseService.getFases()

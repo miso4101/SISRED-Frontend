@@ -18,6 +18,7 @@ export class VersionService {
   API_URL_CREAR = environment.apiUrl + 'versiones/';
   ACCESS_TOKEN = 'FOsYIGqxyoAAAAAAAAAACo5sRYD5XCAOZy15c341h99QLcgRWBeiWQfRgnCOt0Gq';
   MARCAR_VERSION_URL = environment.apiUrl + 'versiones/{id}/marcar';
+  MARCAR_VERSION_URL_LISTO = environment.apiUrl + 'version-lista/{id}/marcar';
 
   private versiones: Array<Version> = [];
 
@@ -107,6 +108,15 @@ export class VersionService {
   markAsFinal(versionNumero: number): Observable<Version> {
     const tokenSisred = this.autenticacionService.obtenerToken();
     const apiUrlMarcar = this.MARCAR_VERSION_URL.replace('{id}', versionNumero.toString());
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Token ' + tokenSisred
+    });
+    return this.httpClient.post<Version>(apiUrlMarcar, '', {headers});
+  }
+  markAsListo(versionNumero: number): Observable<Version> {
+    const tokenSisred = this.autenticacionService.obtenerToken();
+    const apiUrlMarcar = this.MARCAR_VERSION_URL_LISTO.replace('{id}', versionNumero.toString());
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Token ' + tokenSisred
