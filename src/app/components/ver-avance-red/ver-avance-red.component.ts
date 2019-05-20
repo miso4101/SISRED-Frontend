@@ -18,7 +18,7 @@ import { Fase } from './Models/fase';
  */
 export class VerAvanceRedComponent implements OnInit {
   public red: RED;
-  public fases: Array<Fase>;
+  public fases: Fase;
   public advanceRedForm: FormGroup;
   private idRed: number;
 
@@ -57,7 +57,7 @@ export class VerAvanceRedComponent implements OnInit {
       .getAdvanceRedById(id)
       .subscribe(response => {
         this.red = response;
-        this.fases = this.red.fases[0];
+        this.fases = this.red.fases;
       });
   }
 }
