@@ -1,5 +1,9 @@
+import { Fase } from './fase';
+
 export class RED {
+    id: number;
     nombre: string;
-    getProyecto: string;
-    getFase: string;
+    proyecto: string;
+    uhmodificacion: string;
+    fases: Fase;
 }
