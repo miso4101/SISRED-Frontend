@@ -62,6 +62,7 @@ export class NotificacionService {
 
   // Método que invoca el servicio para cambiar visto a notificacion
   cambiarNotificacionAVisto(idNotificacion) {
+
     const tokenSisred = this.autenticacionService.obtenerToken();
 
     const headers = new HttpHeaders({
