@@ -12,7 +12,7 @@ import { AutenticacionService } from '../autenticacion/autenticacion.service';
 export class RedAsignadosService {
   API_URL: string = environment.apiUrl + 'reds/asignados/';
 
-  private reds: Array<RedAsignado> = [];
+  public reds: Array<RedAsignado> = [];
 
   constructor(
     private httpClient: HttpClient,
@@ -37,11 +37,20 @@ export class RedAsignadosService {
           const red = new RedAsignado();
           red.id = dataItem.idRed;
           red.nombre = dataItem.nombreRed;
-          red.rol = dataItem.rol;
+          red.descripcion = dataItem.descripcion;
+          red.tipo = dataItem.tipo;
+          red.solicitante = dataItem.solicitante;
+          red.fecha_inicio = dataItem.fecha_inicio;
+          red.fecha_cierre = dataItem.fecha_cierre;
+          red.porcentaje = dataItem.porcentaje;
+          red.horas_estimadas = dataItem.horas_estimadas;
+          red.listo_revision = dataItem.listo_revision;
+          red.version_numero = dataItem.version_numero;
+          red.version_id = dataItem.version_id;
+          console.log(red.version_id)
           this.reds.push(red);
         });
       });
-    console.log(this.reds);
     return of(this.reds);
   }
 }

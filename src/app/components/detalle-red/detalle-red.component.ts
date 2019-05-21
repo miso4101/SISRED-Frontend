@@ -42,6 +42,7 @@ export class DetalleREDComponent implements OnInit {
   mensaje: string;
   heading: string;
   cambioFaseExitoso: boolean;
+  comentario: string;
 
   @ViewChild('modalFase') modal: ElementRef;
   @ViewChild('modalFaseRespuesta') modalRespuesta: ElementRef;
@@ -133,7 +134,7 @@ export class DetalleREDComponent implements OnInit {
     this.location.back();
     console.log(this.location);
   }
-  
+
   // Marcar versión como final
   markAsFinal(): void {
     this.versionesService.markAsFinal(this.selectFinal.id).subscribe(()=>this.getVersiones())
@@ -157,25 +158,30 @@ export class DetalleREDComponent implements OnInit {
 
   // Metodo para cambiar fase
   cambiarFase(): void {
-    var respuesta: string;
-    this.faseService.cambiarFase(this.idRed, this.detalle.fase.idConectate)
-      .then(data => {
-        this.cambioFaseExitoso = true;
-        this.mensaje = 'El cambio de fase fue exitoso.';
-        $(this.modalRespuesta.nativeElement).modal('show');
+    console.log('comentario', this.comentario);
+    if(this.comentario != null){
+      var respuesta: string;
+      this.faseService.cambiarFase(this.idRed, this.detalle.fase.idConectate, this.comentario)
+        .then(data => {
+          this.cambioFaseExitoso = true;
+          this.mensaje = 'El cambio de fase fue exitoso.';
+          $(this.modalRespuesta.nativeElement).modal('show');
+        }
+        ).catch(error => {
+          this.cambioFaseExitoso = false;
+          this.mensaje = error.error;
+          $(this.modalRespuesta.nativeElement).modal('show');
+        });
+        $(this.modalRespuesta.nativeElement).modal('hide');
+      }else{
+        alert('El comentario es requerido');
       }
-      ).catch(error => {
-        this.cambioFaseExitoso = false;
-        console.log('error',error.error);
-        this.mensaje = error.error;
-        $(this.modalRespuesta.nativeElement).modal('show');
-      });
   }
 
   //Metodo para cuando una fase es seleccionada
   onOptionsSelected() {
     this.heading = 'Cambiar de fase';
-    this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate].nombre + '?'
+    this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate-1].nombre + '?'
     this.mensajeAdvertencia = this.seleccionarTexto(this.detalle.fase.idConectate.toString());
     $(this.modal.nativeElement).modal('show');
   }
@@ -184,7 +190,6 @@ export class DetalleREDComponent implements OnInit {
   closeModal() {
     this.mensaje = null;
     location.reload();
-    console.log('message');
   }
 
   //Metodo para traer el mensaje del modal
@@ -212,6 +217,15 @@ export class DetalleREDComponent implements OnInit {
         break;
     }
     return mensaje;
+  }
+
+  habilitarOpcionCambiarFase(idFase): boolean{
+    if(this.detalle.fase.idConectate==3 && idFase ==2){
+      return false;
+    }else if(idFase != (1*this.detalle.fase.idConectate+1)){
+      return true;
+    }
+    return false;
   }
 
 }
