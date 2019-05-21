@@ -42,6 +42,7 @@ export class VersionService {
           version.fechaCreacion = dataItem.fecha_creacion;
           version.creadoPor = dataItem.creado_por.usuario.username;
           version.esFinal = dataItem.es_final;
+          version.esLista = dataItem.es_lista;
           version.imagen = dataItem.imagen;
           version.url = '';
           this.versiones.push(version);
