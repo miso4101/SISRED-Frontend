@@ -46,6 +46,8 @@ export class DetalleREDComponent implements OnInit {
 
   @ViewChild('modalFase') modal: ElementRef;
   @ViewChild('modalFaseRespuesta') modalRespuesta: ElementRef;
+  selectFinal: Version;
+  selectListo: Version;
   constructor(
     private route: ActivatedRoute,
     private detalleRedService: DetalleRedService,
@@ -134,10 +136,20 @@ export class DetalleREDComponent implements OnInit {
   }
 
   // Marcar versión como final
-  markAsFinal(version:Version): void {
-    this.versionesService.markAsFinal(version.id).subscribe(()=>this.getVersiones())
+  markAsFinal(): void {
+    this.versionesService.markAsFinal(this.selectFinal.id).subscribe(()=>this.getVersiones())
+  }
+  selectAsFinal(version:Version): void{
+    this.selectFinal=version;
+  }
+    // Marcar versión para listp
+  markAsListo(): void {
+    this.versionesService.markAsListo(this.selectListo.id).subscribe(()=>this.getVersiones())
   }
 
+  selectAslisto(version:Version): void{
+    this.selectListo=version;
+  }
   // Metodo que obtiene las fases
   getFases(): void {
     this.faseService.getFases()
