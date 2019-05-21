@@ -42,6 +42,7 @@
     "ng2-pdf-viewer": "^5.2.4",
     "ngx-spinner": "^7.1.4",
     "node-sass": "^4.11.0",
+    "package.json": "^2.0.1",
     "path": "^0.12.7",
     "popper.js": "^1.15.0",
     "rxjs": "~6.3.3",
