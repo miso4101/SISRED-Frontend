@@ -42,6 +42,7 @@ import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habil
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
 import { RedsAsignadosRevisionComponent } from './components/reds-asignados-revision/reds-asignados-revision.component';
 import { ComentariosVersionGenericoComponent } from './components/comentarios-version-generico/comentarios-version-generico.component';
+import { DashboardProyectosConectateComponent } from './components/dashboard-proyectos-conectate/dashboard-proyectos-conectate.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ComentariosVersionGenericoComponent } from './components/comentarios-ve
     RedsAsignadosRevisionComponent,
     BuscarRecursoComponent,
     ComentariosVersionGenericoComponent
+    DashboardProyectosConectateComponent
   ],
   imports: [
     AppRoutingModule,

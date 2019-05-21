@@ -52,7 +52,7 @@ export class NotificacionService {
     });
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get(environment.apiUrl + 'notificaciones/9/novistos/', {headers}).subscribe((data: number) => {
+      this.httpClient.get(environment.apiUrl + 'notificaciones/'+this.autenticacionService.obtenerDatosUsuario().idConectate.toString()+'/novistos/', {headers}).subscribe((data: number) => {
         this.numeroNoVisto = data;
         resolve(this.numeroNoVisto);
       });
@@ -62,6 +62,7 @@ export class NotificacionService {
 
   // Método que invoca el servicio para cambiar visto a notificacion
   cambiarNotificacionAVisto(idNotificacion) {
+
     const tokenSisred = this.autenticacionService.obtenerToken();
 
     const headers = new HttpHeaders({
