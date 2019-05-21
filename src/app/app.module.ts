@@ -40,6 +40,8 @@ import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recur
 import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
 import { HabilitarUsuarioClientService } from './services/HabilitarUsuario/habilita-usuario-client.service';
 import { VersionRedRevisionComponent } from './components/version-red-revision/version-red-revision.component';
+import { RedsAsignadosRevisionComponent } from './components/reds-asignados-revision/reds-asignados-revision.component';
+import { ComentariosVersionGenericoComponent } from './components/comentarios-version-generico/comentarios-version-generico.component';
 import { DashboardProyectosConectateComponent } from './components/dashboard-proyectos-conectate/dashboard-proyectos-conectate.component';
 
 
@@ -73,7 +75,9 @@ import { DashboardProyectosConectateComponent } from './components/dashboard-pro
     HabilitarUsuarioComponent,        
     HabilitarUsuarioComponent,
     TabPanesComponent,
+    RedsAsignadosRevisionComponent,
     BuscarRecursoComponent,
+    ComentariosVersionGenericoComponent
     DashboardProyectosConectateComponent
   ],
   imports: [

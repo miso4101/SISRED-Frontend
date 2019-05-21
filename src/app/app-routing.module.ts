@@ -19,11 +19,13 @@ import { ComentarImagenComponent } from './components/comentar-imagen/comentar-i
 import { RedCrearVersionComponent } from './components/red-crear-version/red-crear-version.component';
 import { BuscarRedComponent } from './components/buscar-red/buscar-red.component';
 import { ComentariosVersionVideoComponent } from './components/comentarios-version-video/comentarios-version-video.component';
+import { ComentariosVersionGenericoComponent } from './components/comentarios-version-generico/comentarios-version-generico.component';
 import { HabilitarUsuarioComponent } from './components/HabilitarUsuario/Habilitar-Usuario.component';
 import { LoginComponent } from './components/login/login.component';
 import { AutenticacionGuard } from './guards/autenticacion/autenticacion.guard';
 import { NoAutenticadoGuard } from './guards/no-autenticado/no-autenticado.guard';
 import { BuscarRecursoComponent } from './components/buscar-recurso/buscar-recurso.component';
+import {RedsAsignadosRevisionComponent} from './components/reds-asignados-revision/reds-asignados-revision.component';
 import { DashboardProyectosConectateComponent } from './components/dashboard-proyectos-conectate/dashboard-proyectos-conectate.component';
 
 const routes: Routes = [
@@ -72,6 +74,12 @@ const routes: Routes = [
     component: ComentariosVersionVideoComponent,
     canActivate: [AutenticacionGuard]
   },
+
+  { path: 'red/version/:idVersion/recurso/:idRecurso/comentariosGenerico', 
+  component: ComentariosVersionGenericoComponent,
+  canActivate: [AutenticacionGuard]
+  },
+
   {
     path: 'habilitarusuario',
     component: HabilitarUsuarioComponent,
@@ -143,10 +151,15 @@ const routes: Routes = [
     component: RedCrearVersionComponent,
     canActivate: [AutenticacionGuard]
   },
-  {
-    path: '**',
-    component: NotFoundComponent,
+
+  { path: 'reds/asignados/:idUsuario',
+    component: RedsAsignadosRevisionComponent,
     canActivate: [AutenticacionGuard]
+  },
+  
+  { path: '**', 
+    component: NotFoundComponent, 
+    canActivate: [AutenticacionGuard] 
   }
 ];
 
