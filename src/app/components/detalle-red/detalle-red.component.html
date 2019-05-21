@@ -143,7 +143,7 @@
               <table class="table table-hover table-bordered table-margin">
                 <thead>
                 <tr>
-                  <td colspan="5">
+                  <td colspan="6">
                     <h3 class="text-center">Versiones</h3>
                   </td>
                 </tr>
@@ -153,6 +153,7 @@
                   <th scope="col">Creado por</th>
                   <th scope="col">Imagen miniatura</th>
                   <th scope="col">Definitiva</th>
+                  <th scope="col">Marcar como lista</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -162,12 +163,10 @@
                   <td>{{version.creadoPor}}</td>
                   <td routerLink="/red/version/{{version.id}}" style="cursor: pointer;"><img style="max-width: 100px; max-height: 100px;" [src]="version.url"></td>
                   <td>
-                    <div *ngIf="version.esFinal; else marcarComoDef">
-                      Versión definitiva
-                    </div>
-                    <ng-template #marcarComoDef>
-                      <button type="button" (click)="markAsFinal(version)" class="btn btn-primary">Marcar como definitivo</button>
-                    </ng-template>
+                     <input type="checkbox" [checked]="version.esFinal" (change)="selectAsFinal(version)" data-toggle="modal" data-target="#myModalVersion" >
+                  </td>
+                  <td>
+                     <input type="checkbox" [checked]="version.esLista" (change)="selectAslisto(version)" data-toggle="modal" data-target="#myModalListo">
                   </td>
                 </tr>
                 </tbody>
@@ -245,6 +244,50 @@
       <div class="modal-footer text-center">
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="closeModal()">Aceptar</button>
       </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModalVersion" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header color-back">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Seguro quiere marcar esta version de RED como Definitiva</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)=markAsFinal() class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalPass">Aceptar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="myModalListo" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header color-back">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Seguro quiere marcar esta version de RED como lista para produccion</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)=markAsListo() class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#myModalPass">Aceptar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
