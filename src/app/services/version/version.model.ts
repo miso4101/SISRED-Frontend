@@ -9,6 +9,7 @@ export class Version {
   imagen: string;
   url: string;
   esFinal: boolean;
+  esLista: boolean;
   nombreRed: string;
   nombreConectate: string;
   archivos: string;
