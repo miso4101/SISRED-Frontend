@@ -2,16 +2,23 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RED } from './Models/red';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdvanceRedRestClientService } from 'src/app/services/red/advance-red-rest-client.service';
+import { AdvanceRedRestClientService } from 'src/app/services/red/ver-avance-red/advance-red-rest-client.service';
+import { Fase } from './Models/fase';
 
 @Component({
   selector: 'app-ver-avance-red',
   templateUrl: './ver-avance-red.component.html',
   styleUrls: ['./ver-avance-red.component.css']
 })
+
+/**
+ * @param red es el objeto red especificado en la carpeta models
+ * @param advanceRedForm formulario con los datos del red
+ * @param idRed es el id del red para manipularlo
+ */
 export class VerAvanceRedComponent implements OnInit {
   public red: RED;
-  subred: Array<RED>;
+  public fases: Fase;
   public advanceRedForm: FormGroup;
   private idRed: number;
 
@@ -30,6 +37,9 @@ export class VerAvanceRedComponent implements OnInit {
     this.getAdvanceRed(this.idRed);
   }
 
+  /**
+   * Inicializa las variables del formulario
+   */
   loadForm(): void {
     this.advanceRedForm = new FormGroup({
       nombre: new FormControl(''),
@@ -38,16 +48,16 @@ export class VerAvanceRedComponent implements OnInit {
     });
   }
 
+  /**
+   * Metodo para obtener el objeto red y sus fases
+   * @param id es el id del red a buscar
+   */
   public getAdvanceRed(id: number): void {
     this.advanceRedRestClientService
       .getAdvanceRedById(id)
       .subscribe(response => {
-        this.red = response[0];
-        this.subred = response;
+        this.red = response;
+        this.fases = this.red.fases;
       });
-  }
-
-  public onChangePageRed(): void {
-    this._route.navigate(['/ver-detalle-red/' + this.idRed]);
   }
 }
