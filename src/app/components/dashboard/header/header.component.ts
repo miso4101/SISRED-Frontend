@@ -27,12 +27,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {    
-    this.getRevisiones()
     this.obtenerNumeroNotificacionesNoVistos();
-  }
-
-  getRevisiones(){
-    this.revisionesService.getRevisiones().subscribe(revisiones => this.revisiones = revisiones);
   }
 
   ultimo(rev: Revision){
