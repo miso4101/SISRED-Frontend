@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardProyectoConectateService } from 'src/app/services/dashboard-proyecto-conectate/dashboard-proyecto-conectate.service';
 
+declare function setup(): any;
+
 @Component({
   selector: 'app-dashboard-proyectos-conectate',
   templateUrl: './dashboard-proyectos-conectate.component.html',
@@ -20,6 +22,7 @@ export class DashboardProyectosConectateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    setup();
     // Invoca al servicio que obtiene los proyectos conectate
     this.dashboardProyectosConectateService
       .obtenerMetricasProyectosConectate()

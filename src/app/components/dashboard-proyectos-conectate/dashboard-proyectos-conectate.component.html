@@ -39,7 +39,7 @@
                   </div>
                   <ng-container *ngFor="let proyecto of proyectos.slice((pagina-1)*paginaSize, pagina*paginaSize)">
                     <div class="col-4 my-auto mt-2">
-                      <h4 class="ml-2" [routerLink]="['/verAvanceConectate' + '/' + proyecto.id]"
+                      <h4 class="ml-2 pointer" [routerLink]="['/verAvanceConectate' + '/' + proyecto.id]"
                         routerLinkActive="router-link-active">{{proyecto.nombre}}</h4>
                     </div>
                     <div class="col-2 text-center my-auto">
