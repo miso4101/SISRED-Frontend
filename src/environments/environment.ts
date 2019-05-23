@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'http://sisredbackend.herokuapp.com/api/'
+  apiUrl: 'https://sisredbackend.herokuapp.com/api/'
 };
 
 /*
