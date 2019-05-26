@@ -52,7 +52,7 @@ export class PdfViewerComponent implements OnInit {
   areaInfo: AreaInfo[] = [];
 
   @ViewChild("pdfContainer") private pdfContainer: ElementRef;
-//Autor: Cristian Sepulveda
+  //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Init del componente.
   ngOnInit() {
@@ -194,8 +194,7 @@ export class PdfViewerComponent implements OnInit {
   //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Descripcion: Render de la pagina.
-  pageRendereds(e) {
-  }
+  pageRendereds(e) {}
   // added new div when pages rendered
   indexOfPage: number = 1;
   pageRendered(event) {
@@ -240,7 +239,7 @@ export class PdfViewerComponent implements OnInit {
       return "none";
     }
   }
-//Autor: Cristian Sepulveda
+  //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Descripcion: Guardar comentario padre. una vez se presione el boton agregar.
   save() {
@@ -334,7 +333,7 @@ export class PdfViewerComponent implements OnInit {
     this.indiceCerrarComentario = i;
     this.seleccionado = this.comentariosPdf[i];
   }
-//Autor: Cristian Sepulveda
+  //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Descripcion: Permite ubicar un comentario dentro del pdf. este evento se lanza en el boton ver comentario.
   moveTo(list: AreaInfo) {
@@ -362,14 +361,14 @@ export class PdfViewerComponent implements OnInit {
   onComentarioChange(comentario) {
     this.comentario = comentario.editor.getData();
   }
-   calcularTotales(){
+  calcularTotales() {
     this.CantidadAbiertos = this.comentariosPdf.filter(
-        x => x.cerrado === false && x.coordenadas.id != 0
-      ).length;
-      this.CantidadCerrados = this.comentariosPdf.filter(
-        x => x.cerrado === true && x.coordenadas.id != 0
-      ).length;
-   }
+      x => x.cerrado === false && x.coordenadas.id != 0
+    ).length;
+    this.CantidadCerrados = this.comentariosPdf.filter(
+      x => x.cerrado === true && x.coordenadas.id != 0
+    ).length;
+  }
   CerrarComentario() {
     this.coomentCierre = this.seleccionado;
     this.seleccionado.cerrado = true;
@@ -383,9 +382,7 @@ export class PdfViewerComponent implements OnInit {
     this.coomentCierre.coordenadas = this.comentariosPdf[
       this.indiceCerrarComentario
     ].coordenadas;
-    this.comentariosPdf[
-      this.indiceCerrarComentario
-    ].cerrado=true;
+    this.comentariosPdf[this.indiceCerrarComentario].cerrado = true;
     this.CerrarComentario_Aceptar.emit({
       seleccionado: this.coomentCierre,
       comentario: this.comentario

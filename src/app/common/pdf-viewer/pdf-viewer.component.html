@@ -2,11 +2,10 @@
   <div class="col-sm-4">
     <div class="list">
 
-      <div class="box list-row" *ngFor="let list of areaInfo; let i = index">
-        <div class="col-sm-12" (click)="moveTo(list); $event.stopPropagation();">ver comentario</div>
+      <div class="box" *ngFor="let list of areaInfo; let i = index">
         <div class="box-header row col-sm-11">
-          <div class="col-sm-6 info text-bold">{{comentariosPdf[i].UsuarioComentario}}</div>
-          <div class="col-sm-6 info right">{{comentariosPdf[i].fechaCreacion | date : 'dd MMM yyyy HH:mm:ss'}}</div>
+          <div class="col-sm-6 info text-bold">{{comentariosPdf[i]?.UsuarioComentario}}</div>
+          <div class="col-sm-6 info right">{{comentariosPdf[i]?.fechaCreacion | date : 'dd MMM yyyy HH:mm:ss'}}</div>
         </div>
         <div>
           <div class="row col-sm-12 ContenidoPrincipal" [innerHTML]="list.comment"></div>
@@ -14,28 +13,39 @@
             <div class="col-sm-12">
               <ckeditor [editor]="Editor" [(ngModel)]="list.text">Ingresar comentario</ckeditor>
               <br>
-          <div class="col-sm-8"></div>
-          <div class="col-sm-4">
-              <button type="button" [disabled]="!list.text" class="btn btn-primary"
-                (click)="addComment(i)">Comentar</button>
-            </div>
+              <div class="col-sm-4">
+                <button class="btn btn-primary" (click)="moveTo(list); $event.stopPropagation();">ver
+                  comentario</button>
+              </div>
+              <div class="col-sm-4">
+                <button type="button" *ngIf="comentariosPdf[i]?.cerrado==false"
+                  (click)="seleccionarComentarioCerrado(i)" class="btn btn-primary right" data-toggle="modal"
+                  data-target="#myModal">Cerrar comentario</button>
+              </div>
+
+              <div class="col-sm-4">
+                <button type="button" [disabled]="!list.text" class="btn btn-primary"
+                  (click)="addComment(i)">Comentar</button>
+
+              </div>
             </div>
             <br>
-            <div class="row col-sm-12 center-block ComentariosHijos" *ngFor="let comment of list.commentsChildren; let x = index ">
-              <div class="col-sm-6 ContenidoHijo">{{comment.UsuarioComentario }}</div>
-              <div class="col-sm-6 DateComment">{{comment.fechaCreacion | date:'yyyy-MM-dd HH:mm:ss' }}</div>
+            <div class="row col-sm-12 center-block ComentariosHijos"
+              *ngFor="let comment of list.commentsChildren; let x = index ">
+              <div class="col-sm-6 ContenidoHijo">{{comment?.UsuarioComentario }}</div>
+              <div class="col-sm-6 DateComment">{{comment?.fechaCreacion | date:'yyyy-MM-dd HH:mm:ss' }}</div>
               <div class="col-sm-12 ContenidoHijo" [innerHTML]="comment.contenido"></div>
 
             </div>
-          <div class="col-sm-6 left bottom"></div>
-          <div class="col-sm-6 right">
-            <button type="button" *ngIf="comentariosPdf[i].cerrado==false" (click)="seleccionarComentarioCerrado(i)" class=" btn btn-primary right" data-toggle="modal" data-target="#myModal">Cerrar comentario</button>
-          </div>
+            <div class="col-sm-6 left bottom"></div>
+            <div class="col-sm-6 right">
+
+            </div>
         </div>
         <div class="box-footer margin">
 
           <div class="col-sm-8 left bottom">
-            <button *ngIf="comentariosPdf[i].cerrado==true" type="button" class="btn btn-primary btn-sm btn-block "
+            <button *ngIf="comentariosPdf[i]?.cerrado==true" type="button" class="btn btn-primary btn-sm btn-block "
               [className]="comentariosPdf[i].resuelto==true ? 'Resuelto' : 'SinResolver'">{{comentariosPdf[i].resuelto ? "Cerrado resuelto" : "Cerrado sin resolver" }}</button>
           </div>
           <div class="col-sm-4 right bottom">
@@ -43,7 +53,9 @@
         </div>
       </div>
       <div class="row col-sm-9 ">
-        <div>Comentarios abiertos: {{CantidadAbiertos}}</div>
+        <div>Comentarios abiertos: {{CantidadAbiertos}} </div>
+      </div>
+      <div class="row col-sm-9 ">
         <div>Comentarios cerrados: {{CantidadCerrados}}</div>
       </div>
     </div>
@@ -52,8 +64,8 @@
 
   <div #pdfContainer class="container-pdf__right-side" (mousemove)="mouseEvent($event)" (mousedown)="mouseEvent($event)"
     (mouseup)="mouseEvent($event)">
-    <pdf-viewer *ngIf="loadData" [src]="rutaArchivo" [stick-to-page]="false"
-      [render-text]="true" (page-rendered)="pageRendered($event)" style="display: block;">
+    <pdf-viewer *ngIf="loadData" [src]="rutaArchivo" [stick-to-page]="false" [render-text]="true"
+      (page-rendered)="pageRendered($event)" style="display: block;">
     </pdf-viewer>
   </div>
 </div>

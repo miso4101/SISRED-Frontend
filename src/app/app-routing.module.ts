@@ -28,9 +28,8 @@ import { BuscarRecursoComponent } from "./components/buscar-recurso/buscar-recur
 import { RedComentarPdfComponent } from "./components/red-comentar-pdf/red-comentar-pdf.component";
 import { RedsAsignadosRevisionComponent } from "./components/reds-asignados-revision/reds-asignados-revision.component";
 import { DashboardProyectosConectateComponent } from "./components/dashboard-proyectos-conectate/dashboard-proyectos-conectate.component";
-import { VerAvanceConectateComponent } from './components/ver-avance-conectate/ver-avance-conectate.component';
-import { RedDescargarRedComponent } from './components/red-descargar-red/red-descargar-red.component';
-
+import { VerAvanceConectateComponent } from "./components/ver-avance-conectate/ver-avance-conectate.component";
+import { RedDescargarRedComponent } from "./components/red-descargar-red/red-descargar-red.component";
 
 const routes: Routes = [
   {
@@ -53,32 +52,32 @@ const routes: Routes = [
     canActivate: [NoAutenticadoGuard]
   },
   {
-    path: 'red/:idRed/proyecto/agregar',
+    path: "red/:idRed/proyecto/agregar",
     component: AddRedComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'red/:idRed/detalle',
+    path: "red/:idRed/detalle",
     component: DetalleREDComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'reds/:idUsuario',
+    path: "reds/:idUsuario",
     component: RedAsignadosComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'asignaciones',
+    path: "asignaciones",
     component: RedsPorPersonaComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'red/version/:idVersion/recurso/:idRecurso/comentarios',
+    path: "red/version/:idVersion/recurso/:idRecurso/comentarios",
     component: ComentariosVersionVideoComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'habilitarusuario',
+    path: "habilitarusuario",
     component: HabilitarUsuarioComponent,
     canActivate: [AutenticacionGuard]
   },
@@ -88,7 +87,7 @@ const routes: Routes = [
     canActivate: [AutenticacionGuard]
   },
   {
-    path: '',
+    path: "",
     component: LoginComponent,
     canActivate: [NoAutenticadoGuard]
   },
@@ -136,7 +135,8 @@ const routes: Routes = [
   },
   {
     path: "reds/:id/comentar-pdf",
-    component: RedComentarPdfComponent
+    component: RedComentarPdfComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
     path: "red/version/:idVersion",
@@ -154,12 +154,12 @@ const routes: Routes = [
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'verAvanceConectate/:id',
+    path: "verAvanceConectate/:id",
     component: VerAvanceConectateComponent,
     canActivate: [AutenticacionGuard]
   },
   {
-    path: 'descargarred/:idRed',
+    path: "descargarred/:idRed",
     component: RedDescargarRedComponent,
     canActivate: [AutenticacionGuard]
   },
@@ -179,5 +179,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes), HttpClientModule],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

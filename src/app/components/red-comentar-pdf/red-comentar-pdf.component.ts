@@ -9,30 +9,27 @@ import { ComentarRestClientService } from "src/app/services/red/comentar-red/com
   styleUrls: ["./red-comentar-pdf.component.css"],
   providers: [ComentarRestClientService]
 })
-
 export class RedComentarPdfComponent implements OnInit {
   public comentariosPdf: ComentarioPdfModel[];
 
   public test = "test";
   public idRed: string;
-//Variables FJPG
+  //Variables FJPG
   idVersion: number;
   idRecurso: number;
 
   public myRadio: boolean;
   public Mensaje: string;
 
-  public  CantidadAbiertos: number;
-  public  CantidadCerrados: number;
-
+  public CantidadAbiertos: number;
+  public CantidadCerrados: number;
 
   constructor(
     private route: ActivatedRoute,
     private comentarRestClientService: ComentarRestClientService
   ) {
-      this.idRecurso=0;
-      this.idVersion=0;
-
+    this.idRecurso = 0;
+    this.idVersion = 0;
   }
 
   ngOnInit() {
@@ -42,9 +39,11 @@ export class RedComentarPdfComponent implements OnInit {
   //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Descripcion: Obtener comentarios. consumo de servicios que devuelven lista de comentarios.
-getComentarios() {
+  getComentarios() {
+    this.comentariosPdf = [];
     this.route.paramMap.subscribe(params => {
       this.idRed = params.get("id");
+      console.log(this.idRed);
       this.comentarRestClientService
         .getComentariosByIdRed(params.get("id"))
         .subscribe(data => {
@@ -67,9 +66,10 @@ getComentarios() {
         localStorage.setItem("idComentario", response.id);
         localStorage.setItem("coordenadas", response.comentarioMultimedia.id);
         console.log(response);
+        this.getComentarios();
       });
   }
-//Autor: Cristian Sepulveda
+  //Autor: Cristian Sepulveda
   //Fecha: 2019-05-15
   //Descripcion: Guardar un comentario HIjo.
   guardarComentarioHijo($event): void {
@@ -114,5 +114,4 @@ getComentarios() {
         }
       );
   }
-
 }
