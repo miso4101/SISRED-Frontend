@@ -3,7 +3,7 @@
  *
  * @returns void
  */
-function setupTable() { 
+function setupRevTables() { 
   $('#search_table_reds_1').DataTable({
     'paging'      : true,
     'lengthChange': false,

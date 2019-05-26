@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Location} from "@angular/common";
 
 declare function setup(): any;
-declare function setupTable(): any;
+declare function setupRevTable(): any;
 
 /**
  * Componente encargado de la revisión de una versión de RED.
@@ -49,7 +49,7 @@ export class VersionRedRevisionComponent implements OnInit  {
   
   // Método que obtiene el listado de recursos de la versión
   getRecursos(): void {
-    this.versionService.getRecursos(this.idVersion).subscribe(recursos => (this.recursos = recursos), error=>console.log("error: "+error), ()=>setTimeout(function() { setupTable() }, 1000));
+    this.versionService.getRecursos(this.idVersion).subscribe(recursos => (this.recursos = recursos), error=>console.log("error: "+error), ()=>setTimeout(function() { setupRevTable() }, 1000));
   }
 
   // Metodo que regresa a la pantella anterior

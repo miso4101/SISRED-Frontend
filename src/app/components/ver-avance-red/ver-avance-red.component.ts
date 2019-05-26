@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AdvanceRedRestClientService } from 'src/app/services/red/ver-avance-red/advance-red-rest-client.service';
 import { Fase } from './Models/fase';
 
+declare function setup(): any;
+
 @Component({
   selector: 'app-ver-avance-red',
   templateUrl: './ver-avance-red.component.html',
@@ -33,6 +35,7 @@ export class VerAvanceRedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    setup();
     this.loadForm();
     this.getAdvanceRed(this.idRed);
   }
