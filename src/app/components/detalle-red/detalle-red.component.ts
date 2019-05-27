@@ -181,7 +181,7 @@ export class DetalleREDComponent implements OnInit {
   //Metodo para cuando una fase es seleccionada
   onOptionsSelected() {
     this.heading = 'Cambiar de fase';
-    this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate-1].nombre + '?'
+    this.body = '¿Desea cambiar de fase a ' + this.fases[this.detalle.fase.idConectate].nombre + '?'
     this.mensajeAdvertencia = this.seleccionarTexto(this.detalle.fase.idConectate.toString());
     $(this.modal.nativeElement).modal('show');
   }
