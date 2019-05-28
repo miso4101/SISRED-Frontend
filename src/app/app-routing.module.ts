@@ -112,10 +112,6 @@ const routes: Routes = [
     canActivate: [AutenticacionGuard]
   },
   {
-    path: "red/:id/recursos/:idrecurso",
-    component: RedRecursosDetalleComponent
-  },
-  {
     path: "red/:idRed/recursos/agregar",
     component: AgregarRecursoComponent,
     canActivate: [AutenticacionGuard]
