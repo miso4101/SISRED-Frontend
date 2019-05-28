@@ -35,16 +35,17 @@ export class BuscarRecursoService {
     };
 
     return new Promise((resolve, reject) => {
-      this.httpClient.get(`${environment.apiUrl}buscarRecurso/`, options).subscribe((data: Array<any>) => {
+      this.httpClient.get(`${environment.apiUrl}buscarRecurso/`, options).subscribe((data: any) => {
         let recursos = [];
-        data.forEach(item => {
+        console.log('items ' + data)
+        data.context.forEach(rec => {
           let recurso = new Recurso();
-          recurso.id = item.id;
-          recurso.nombre = item.nombre;
-          recurso.descripcion = item.descripcion;
-          recurso.fecha_creacion = item.fecha_creacion;
-          recurso.metadata = item.metadata;
-          recurso.tipo = item.tipo;
+          recurso.id = rec.id;
+          recurso.nombre = rec.nombre;
+          recurso.descripcion = rec.descripcion;
+          recurso.fecha_creacion = rec.fecha_creacion;
+          recurso.metadata = rec.metadata;
+          recurso.tipo = rec.tipo;
           recursos.push(recurso);
         });
         resolve(recursos);
