@@ -77,13 +77,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-sm-6 border">Metadata</div>
-                <div *ngIf="!showInputText" class="col-sm-6 border">
+                <div class="col-sm-4">Metadata</div>
+                <div *ngIf="!showInputText" class="col-sm-8">
                   <span class="metadata-padding" *ngFor="let metadata of resourceDetailsoModel?.metadata">
                     <span class="badge badge-pill label-info text-sm-center text-wrap">{{metadata.tag}}</span>
                   </span>
                 </div>
-                <div *ngIf="showInputText" class="col-sm-6 border" style="display: inline; align-items: center;">
+                <div *ngIf="showInputText" class="col-sm-8" style="display: inline; align-items: center;">
                   <div class="btn-toolbar">
                     <input formControlName="newMetadata" [(ngModel)]="resourceDetailsoModel.newMetadata" type="text" id="newMetadata"
                         placeholder="Metadata" />
