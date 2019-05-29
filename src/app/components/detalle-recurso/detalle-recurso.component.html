@@ -84,11 +84,9 @@
                   </span>
                 </div>
                 <div *ngIf="showInputText" class="col-sm-8" style="display: inline; align-items: center;">
-                  <div class="btn-toolbar">
                     <input formControlName="newMetadata" [(ngModel)]="resourceDetailsoModel.newMetadata" type="text" id="newMetadata"
                         placeholder="Metadata" />
                     <button type="button" class="btn btn-success btn-sm" (click)="addMetadata()" [disabled]="!resourceDetailsoModel.newMetadata"><i class="fas fa-plus"></i>&nbsp;Agregar</button>
-                  </div>
                   <br>
                    <span class="metadata-padding" *ngFor="let metadata of resourceDetailsoModel?.metadata">
                     <span class="badge badge-pill label-info text-sm-center text-wrap">{{metadata.tag}}</span>
